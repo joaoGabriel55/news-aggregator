@@ -6,6 +6,13 @@
 - [ ] Personalized news feed: Users should be able to customize their news feed by selecting their preferred sources, categories, and authors.
 - [x] Mobile-responsive design: The website should be optimized for viewing on mobile devices.
 
+## Setup
+
+Copy `.env.example` to `.env`
+```sh
+cp .env.example .env
+````
+
 ## How to run
 ```sh
 npm run dev
@@ -15,3 +22,5 @@ npm run dev
 ```sh
 npm run test
 ```
+_Note: For some reason, unfortunately, the tests using Vitest are been false positives_
+

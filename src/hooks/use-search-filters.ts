@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const today = new Date().toISOString();
@@ -14,12 +14,6 @@ export function useSearchFilters() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     searchParams.get("categories")?.split(",") || []
   );
-
-  useEffect(() => {
-    if (!query) {
-      setSearchParams({});
-    }
-  }, [query]);
 
   function handleDateChange(date: Date) {
     setDate(date);

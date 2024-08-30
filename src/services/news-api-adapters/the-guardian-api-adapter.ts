@@ -7,7 +7,18 @@ import {
 
 type ResponseAPI = {
   response: {
-    results: any[];
+    results: {
+      webTitle: string;
+      webUrl: string;
+      webPublicationDate: string;
+      fields: {
+        trailText: string;
+      };
+      tags: {
+        tagId: string;
+        webTitle: string;
+      }[];
+    }[];
   };
 };
 

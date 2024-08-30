@@ -5,6 +5,16 @@ import {
   NewsAPIAdapter,
 } from "../news-api-adapter.interface";
 
+type ResponseAPI = {
+  articles: {
+    title: string;
+    description: string;
+    url: string;
+    publishedAt: string;
+    author: string;
+  }[];
+};
+
 export class NewsAPIOrgAdapter implements NewsAPIAdapter {
   constructor(
     private readonly httpClient: HttpClient = new HttpClient(
@@ -39,9 +49,9 @@ export class NewsAPIOrgAdapter implements NewsAPIAdapter {
       },
     };
 
-    const response = await this.httpClient.get<{
-      articles: any[];
-    }>(query || tags?.length ? everything : topHeadlines);
+    const response = await this.httpClient.get<ResponseAPI>(
+      query || tags?.length ? everything : topHeadlines
+    );
 
     return response.articles.map((article) => ({
       title: article.title,
