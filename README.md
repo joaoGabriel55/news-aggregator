@@ -3,7 +3,7 @@
 ## TODO
 
 - [x] Article search and filtering: Users should be able to search for articles by keyword and filter the results by date, category, and source.
-- [ ] Personalized news feed: Users should be able to customize their news feed by selecting their preferred sources, categories, and authors.
+- [x] Personalized news feed: Users should be able to customize their news feed by selecting their preferred sources, categories, and authors.
 - [x] Mobile-responsive design: The website should be optimized for viewing on mobile devices.
 
 ## Setup
@@ -15,8 +15,9 @@ cp .env.example .env
 
 ## How to run
 ```sh
-npm run dev
+docker compose up --build
 ```
+Go to http://localhost:5173
 
 ## How to test
 ```sh
