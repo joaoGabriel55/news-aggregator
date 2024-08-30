@@ -6,6 +6,7 @@ const today = new Date().toISOString();
 export function useSearchFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const [source, setSource] = useState(searchParams.get("source"));
   const [query, setQuery] = useState(searchParams.get("query") || "");
   const [date, setDate] = useState<Date>(
     new Date(searchParams.get("from") || today)
@@ -25,11 +26,10 @@ export function useSearchFilters() {
   }
 
   function handleSubmitSearch() {
-    const source = searchParams.get("source");
-
     setSearchParams({
       ...(source ? { source } : {}),
-      ...(query ? { query, from: date.toISOString() } : {}),
+      ...(query ? { query } : {}),
+      ...(date ? { from: date.toISOString() } : {}),
       ...(selectedCategories.length > 0
         ? { categories: selectedCategories.join(",") }
         : {}),
@@ -39,6 +39,7 @@ export function useSearchFilters() {
   function handleClearSearch() {
     setSearchParams({});
     setQuery("");
+    setSource(null);
     setSelectedCategories([]);
     setDate(new Date(today));
   }
@@ -53,6 +54,8 @@ export function useSearchFilters() {
   }
 
   return {
+    source,
+    setSource,
     query,
     setQuery,
     date,

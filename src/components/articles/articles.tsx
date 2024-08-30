@@ -5,6 +5,8 @@ import { Message } from "@/components/shared/message";
 export function Articles() {
   const { data, isError, isLoading } = useNewsArticles();
 
+  console.log(data);
+
   if (isError) {
     return <Message content="Something went wrong. Please try again later." />;
   }
