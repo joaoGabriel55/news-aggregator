@@ -6,26 +6,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { APISources, sources } from "@/hooks/use-news-articles";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 
-export function APISourcesSelector() {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const [source, setSource] = useState<APISources>("newsapi-org");
-
-  useEffect(() => {
-    setSearchParams({ source });
-    setSource((searchParams.get("source") || "newsapi-org") as APISources);
-  }, []);
-
-  function handleSourceChange(source: APISources) {
-    setSearchParams({ source });
-    setSource(source);
-  }
+export function APISourcesSelector({
+  source,
+  onSourceChange,
+}: {
+  source: APISources;
+  onSourceChange: (source: APISources) => void;
+}) {
 
   return (
-    <Select defaultValue="newsapi-org" onValueChange={handleSourceChange}>
+    <Select value={source || ''} onValueChange={onSourceChange}>
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Select a source" />
       </SelectTrigger>

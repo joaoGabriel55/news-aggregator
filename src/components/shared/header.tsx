@@ -1,5 +1,5 @@
 import { Newspaper } from "lucide-react";
-import { SearchMobile } from "./search-mobile";
+import { Search } from "./search";
 
 export function Header() {
   return (
@@ -10,7 +10,7 @@ export function Header() {
           <span>News Aggregator</span>
         </a>
         <div className="md:hidden w-full">
-          <SearchMobile />
+          <Search />
         </div>
       </div>
     </header>
