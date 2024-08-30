@@ -41,8 +41,6 @@ export class TheGuardianAPIAdapter implements NewsAPIAdapter {
       },
     });
 
-    console.log(response.results)
-
     return response.results.map((article) => ({
       title: article?.webTitle,
       description: article?.fields?.trailText,
