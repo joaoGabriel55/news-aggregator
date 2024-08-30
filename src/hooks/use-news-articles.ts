@@ -2,17 +2,18 @@ import { NewsAPI } from "@/services/news-api";
 import { NewsAPIAdapter } from "@/services/news-api-adapter.interface";
 import { NewsAPIOrgAdapter } from "@/services/news-api-adapters/news-api-org-adapter";
 import { TheGuardianAPIAdapter } from "@/services/news-api-adapters/the-guardian-api-adapter";
+import { TheNewYorkTimesAPIAdapter } from "@/services/news-api-adapters/the-new-york-times-api-adapter";
 
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-export type APISources = "newsapi-org" | "the-guardian" | "newsapi";
+export type APISources = "newsapi-org" | "the-guardian" | "the-new-york-times";
 
 export const sources: Record<APISources, NewsAPIAdapter> = {
   "newsapi-org": new NewsAPIOrgAdapter(),
   "the-guardian": new TheGuardianAPIAdapter(),
-  newsapi: new TheGuardianAPIAdapter(),
+  "the-new-york-times": new TheNewYorkTimesAPIAdapter(),
 } as const;
 
 export function useNewsArticles() {
