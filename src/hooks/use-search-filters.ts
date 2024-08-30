@@ -3,31 +3,45 @@ import { useSearchParams } from "react-router-dom";
 
 const today = new Date().toISOString();
 
+export type SearchFilters = {
+  source: string | null;
+  query: string;
+  from: string;
+  categories: string[];
+};
+
 export function useSearchFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [source, setSource] = useState(searchParams.get("source"));
   const [query, setQuery] = useState(searchParams.get("query") || "");
-  const [date, setDate] = useState<Date>(
+  const [from, setFrom] = useState<Date>(
     new Date(searchParams.get("from") || today)
   );
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     searchParams.get("categories")?.split(",") || []
   );
 
-  function handleDateChange(date: Date) {
-    setDate(date);
+  function handleDateChange(from: Date) {
+    setFrom(from);
   }
 
   function handleSubmitSearch() {
     setSearchParams({
       ...(source ? { source } : {}),
       ...(query ? { query } : {}),
-      ...(date ? { from: date.toISOString() } : {}),
+      ...(from ? { from: from.toISOString() } : {}),
       ...(selectedCategories.length > 0
         ? { categories: selectedCategories.join(",") }
         : {}),
     });
+  }
+
+  function updateSearchFiltersState(searchFilters: SearchFilters) {
+    setQuery(searchFilters.query);
+    setSource(searchFilters.source);
+    setSelectedCategories(searchFilters.categories);
+    setFrom(new Date(searchFilters.from));
   }
 
   function handleClearSearch() {
@@ -35,7 +49,7 @@ export function useSearchFilters() {
     setQuery("");
     setSource(null);
     setSelectedCategories([]);
-    setDate(new Date(today));
+    setFrom(new Date(today));
   }
 
   function handleSelectedCategory(category: string) {
@@ -52,11 +66,12 @@ export function useSearchFilters() {
     setSource,
     query,
     setQuery,
-    date,
+    from,
     selectedCategories,
     handleSelectedCategory,
     handleDateChange,
     handleSubmitSearch,
     handleClearSearch,
+    updateSearchFiltersState,
   };
 }

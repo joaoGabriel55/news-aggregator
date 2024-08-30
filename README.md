@@ -22,5 +22,8 @@ npm run dev
 ```sh
 npm run test
 ```
-_Note: For some reason, unfortunately, the tests using Vitest are been false positives_
+
+## Notes
+- _For some reason, unfortunately, the tests using Vitest are been false positives_
+- _Due to the heterogeneous nature of the API sources, filters like Author is not supported_
 
