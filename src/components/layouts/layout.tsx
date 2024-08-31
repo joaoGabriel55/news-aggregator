@@ -10,12 +10,10 @@ export function Layout({ children }: Props) {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-1 container py-8 grid md:grid-cols-[240px_1fr] gap-8">
-        <div className="hidden md:block">
-          <Search />
-        </div>
-        {children}
-      </main>
+      <div className="hidden md:block md:fixed md:top-0 md:left-0 md:w-[20%] md:pt-24">
+        <Search />
+      </div>
+      <main className="md:ml-[20%] min-h-screen gap-8 py-8">{children}</main>
       <Footer />
     </div>
   );
